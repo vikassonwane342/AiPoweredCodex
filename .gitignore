@@ -1,0 +1,7 @@
+﻿.vs/
+**/.vs/
+**/bin/
+**/obj/
+AiPoweredCodex/.dotnet/
+AiPoweredCodex/build-restore.log
+AiPoweredCodex/AiPoweredCodex/

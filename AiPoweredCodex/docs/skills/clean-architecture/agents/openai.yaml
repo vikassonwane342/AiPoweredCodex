@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Clean Architecture"
+  short_description: "Design and refactor layered architecture"
+  default_prompt: "Use $clean-architecture to design or refactor this codebase with clear boundaries."

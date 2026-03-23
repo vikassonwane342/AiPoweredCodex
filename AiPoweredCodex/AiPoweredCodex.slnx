@@ -1,0 +1,6 @@
+﻿<Solution>
+  <Project Path="src/Domain/AiPoweredCodex.Domain/AiPoweredCodex.Domain.csproj" />
+  <Project Path="src/Application/AiPoweredCodex.Application/AiPoweredCodex.Application.csproj" />
+  <Project Path="src/Infrastructure/AiPoweredCodex.Infrastructure/AiPoweredCodex.Infrastructure.csproj" />
+  <Project Path="src/Api/AiPoweredCodex.Api/AiPoweredCodex.Api.csproj" />
+</Solution>

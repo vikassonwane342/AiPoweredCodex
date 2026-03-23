@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "JWT Authentication"
+  short_description: "Build secure JWT auth flows"
+  default_prompt: "Use $jwt-authentication to add or fix JWT-based authentication in this project."

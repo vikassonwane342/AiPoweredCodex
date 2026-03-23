@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "AI SDLC Cycle"
+  short_description: "Assigned issue to GitHub PR flow"
+  default_prompt: "Use $ai-sdlc-cycle to take my assigned GitHub issue through fix, branch, push, and PR."
