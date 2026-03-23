@@ -21,10 +21,12 @@ public sealed class AdminController : ControllerBase
     {
         if (!HttpContext.IsInRole(UserRole.Admin))
         {
+            Console.WriteLine("AdminController.Insights returning Unauthorized.");
             return Unauthorized(new { message = "Admin bearer token is required." });
         }
 
         var insights = await _adminService.GetInsightsAsync(cancellationToken);
+        Console.WriteLine("AdminController.Insights returning Ok.");
         return Ok(insights);
     }
 }

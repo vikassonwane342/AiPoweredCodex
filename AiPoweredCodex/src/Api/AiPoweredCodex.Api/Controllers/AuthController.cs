@@ -22,10 +22,12 @@ public sealed class AuthController : ControllerBase
         try
         {
             var response = await _authService.RegisterAsync(request, cancellationToken);
+            Console.WriteLine("AuthController.Register returning Ok.");
             return Ok(response);
         }
         catch (InvalidOperationException exception)
         {
+            Console.WriteLine("AuthController.Register returning BadRequest.");
             return BadRequest(new { message = exception.Message });
         }
     }
@@ -36,10 +38,12 @@ public sealed class AuthController : ControllerBase
         try
         {
             var response = await _authService.LoginAsync(request, cancellationToken);
+            Console.WriteLine("AuthController.Login returning Ok.");
             return Ok(response);
         }
         catch (InvalidOperationException exception)
         {
+            Console.WriteLine("AuthController.Login returning Unauthorized.");
             return Unauthorized(new { message = exception.Message });
         }
     }
@@ -50,9 +54,11 @@ public sealed class AuthController : ControllerBase
         var userId = HttpContext.GetUserId();
         if (userId is null)
         {
+            Console.WriteLine("AuthController.Me returning Unauthorized.");
             return Unauthorized(new { message = "Bearer token is required." });
         }
 
+        Console.WriteLine("AuthController.Me returning Ok.");
         return Ok(new
         {
             userId,
