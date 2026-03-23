@@ -1,0 +1,4 @@
+﻿@AiPoweredCodex.Api_HostAddress = https://localhost:7001
+
+GET {{AiPoweredCodex.Api_HostAddress}}/
+Accept: application/json

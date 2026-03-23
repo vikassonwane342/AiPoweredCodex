@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "GitHub Issue To PR"
+  short_description: "Fix issues and raise GitHub PRs"
+  default_prompt: "Use $github-issue-to-pr to fix a GitHub issue on a branch and open a pull request to main."
