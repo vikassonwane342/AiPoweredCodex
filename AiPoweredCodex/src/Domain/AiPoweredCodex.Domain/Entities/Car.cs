@@ -1,4 +1,4 @@
-﻿using AiPoweredCodex.Domain.Enums;
+using AiPoweredCodex.Domain.Enums;
 
 namespace AiPoweredCodex.Domain.Entities;
 
@@ -26,6 +26,28 @@ public sealed class Car
         StartingPrice = startingPrice;
         CurrentPrice = startingPrice;
         Description = description.Trim();
+    }
+
+    public static Car Restore(
+        Guid id,
+        Guid sellerId,
+        string title,
+        string brand,
+        string model,
+        int year,
+        decimal startingPrice,
+        decimal currentPrice,
+        string description,
+        CarStatus status,
+        DateTime createdAtUtc)
+    {
+        return new Car(sellerId, title, brand, model, year, startingPrice, description)
+        {
+            Id = id,
+            CurrentPrice = currentPrice,
+            Status = status,
+            CreatedAtUtc = createdAtUtc
+        };
     }
 
     public void RegisterBid(decimal amount)

@@ -1,4 +1,4 @@
-﻿using AiPoweredCodex.Application.Abstractions.Persistence;
+using AiPoweredCodex.Application.Abstractions.Persistence;
 using AiPoweredCodex.Application.Abstractions.Security;
 using AiPoweredCodex.Domain.Entities;
 using AiPoweredCodex.Domain.Enums;
@@ -14,15 +14,25 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
+        services.Configure<DatabaseOptions>(configuration.GetSection(DatabaseOptions.SectionName));
 
-        services.AddSingleton<IUserRepository, InMemoryUserRepository>();
-        services.AddSingleton<ICarRepository, InMemoryCarRepository>();
-        services.AddSingleton<IBidRepository, InMemoryBidRepository>();
+        services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
+        services.AddSingleton<DatabaseInitializer>();
+        services.AddScoped<IUserRepository, SqlUserRepository>();
+        services.AddScoped<ICarRepository, SqlCarRepository>();
+        services.AddScoped<IBidRepository, SqlBidRepository>();
         services.AddSingleton<IPasswordHasher, Pbkdf2PasswordHasher>();
         services.AddSingleton<ITokenService, HmacTokenService>();
 
-        services.AddSingleton<DemoDataSeeder>();
+        services.AddScoped<DemoDataSeeder>();
         return services;
+    }
+
+    public static async Task InitializeDatabaseAsync(this IServiceProvider serviceProvider)
+    {
+        using var scope = serviceProvider.CreateScope();
+        var initializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
+        await initializer.InitializeAsync();
     }
 
     public static async Task SeedDemoDataAsync(this IServiceProvider serviceProvider)

@@ -1,4 +1,4 @@
-﻿using AiPoweredCodex.Domain.Enums;
+using AiPoweredCodex.Domain.Enums;
 
 namespace AiPoweredCodex.Domain.Entities;
 
@@ -17,5 +17,14 @@ public sealed class AppUser
         Email = email.Trim().ToLowerInvariant();
         PasswordHash = passwordHash;
         Role = role;
+    }
+
+    public static AppUser Restore(Guid id, string fullName, string email, string passwordHash, UserRole role, DateTime createdAtUtc)
+    {
+        return new AppUser(fullName, email, passwordHash, role)
+        {
+            Id = id,
+            CreatedAtUtc = createdAtUtc
+        };
     }
 }
